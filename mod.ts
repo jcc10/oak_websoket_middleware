@@ -36,7 +36,6 @@ export class WebSocketMiddleware {
     }
 
     public middleware() {
-        let self = this;
         return (ctx: any, next: any) => { this.real_middleware(ctx, next) };
     }
 }

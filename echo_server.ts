@@ -30,8 +30,7 @@ export class Echo_Server {
     }
 
     public socket_handler() {
-        let self = this;
-        return async (ws: WebSocket) => { await self.handler.call(self, ws); }
+        return async (ws: WebSocket) => { this.handler(ws); }
     }
 
 
