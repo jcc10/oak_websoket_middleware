@@ -56,12 +56,13 @@ export class Echo_Server {
 
     private async broadcast(message: string, senderId?: string): Promise<void> {
         if (!message) return;
-        console.log({ message, senderId })
+        const fullM = senderId ? `[${senderId}]: ${message}` : message;
+        console.log(fullM);
         for (const user of this.users.values()) {
             if(user.isClosed){
                 continue;
             }
-            await user.send(senderId ? `[${senderId}]: ${message}` : message);
+            await user.send(fullM);
         }
     }
 }
