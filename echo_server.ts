@@ -9,7 +9,7 @@ export class Echo_Server {
 
         // Register user connection
         this.users.set(userId, ws);
-        this.broadcast(`${userId} is connected`);
+        await this.broadcast(`${userId} is connected`);
 
         // Wait for new messages
         try {
@@ -54,14 +54,14 @@ export class Echo_Server {
     }
 
 
-    private broadcast(message: string, senderId?: string): void {
+    private async broadcast(message: string, senderId?: string): Promise<void> {
         if (!message) return;
         console.log({ message, senderId })
         for (const user of this.users.values()) {
             if(user.isClosed){
                 continue;
             }
-            user.send(senderId ? `[${senderId}]: ${message}` : message);
+            await user.send(senderId ? `[${senderId}]: ${message}` : message);
         }
     }
 }
