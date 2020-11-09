@@ -16,26 +16,9 @@ export class WebSocketMiddleware {
             ctx.response.status = 200;
             return;
         }
-
-        const { conn, r: bufReader, w: bufWriter, headers } =
-            ctx.request.serverRequest;
-
-        try {
-            const sock = await acceptWebSocket({
-                conn,
-                bufReader,
-                bufWriter,
-                headers,
-            });
-
-            this.handler(sock);
-        } catch (err) {
-            console.error(`Dev Server failed to accept websocket: ${err}`);
-            ctx.response.status = 400;
-        }
     }
 
-    public middleware() {
-        return (ctx: any, next: any) => { this.real_middleware(ctx, next) };
+    public middleware(): Middleware {
+        return async (ctx, next) => { await this.real_middleware(ctx, next) };
     }
 }

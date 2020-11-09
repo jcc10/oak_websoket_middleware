@@ -46,11 +46,11 @@ export class Echo_Server {
                 await ws.close(1000).catch(console.error);
             }
         }
-
+        return;
     }
 
     public socket_handler() {
-        return async (ws: WebSocket) => { this.handler(ws); }
+        return async (ws: WebSocket) => { await this.handler(ws); };
     }
 
 
