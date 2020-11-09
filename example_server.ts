@@ -5,8 +5,8 @@ import { WebSocketMiddleware } from "./mod.ts";
 import { Echo_Server } from "./echo_server.ts";
 
 const app = new Application();
-const echo_server = new Echo_Server();
-const ws_server = new WebSocketMiddleware("/ws", echo_server.socket_handler());
+const echo_server = new Echo_Server("/ws");
+const ws_server = new WebSocketMiddleware(echo_server.socket_handler());
 app.use(ws_server.middleware());
 
 app.use(async (ctx: any, next: any) => {

@@ -3,8 +3,16 @@ import { v4 } from 'https://deno.land/std@0.76.0/uuid/mod.ts'
 
 export class Echo_Server {
     private users = new Map<string, WebSocket>();
+    private path: string;
+    constructor(path: string){
+        this.path = path;
+    }
 
-    private async handler(ws: WebSocket): Promise<void> {
+    private async handler(ws: WebSocket, url: URL, headers: Headers): Promise<void> {
+        if(url.pathname != this.path){
+            ws.close(999, "wrong path");
+        }
+
         const userId = v4.generate();
 
         // Register user connection
@@ -49,7 +57,7 @@ export class Echo_Server {
     }
 
     public socket_handler() {
-        return async (ws: WebSocket) => { await this.handler(ws); };
+        return async (socket: WebSocket, url: URL, headers: Headers) => { await this.handler(socket, url, headers); };
     }
 
 

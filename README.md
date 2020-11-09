@@ -1,15 +1,26 @@
 # oak_websoket_middleware
 Idiot level middleware for creating websocket endpoints.
 
-Import with ``` EXPUNGED UNTIL DEBUGGED ```
+Import with ```
+import { WebSocketMiddleware } from "./mod.ts";
+```
 
 Create a new server with
 
 ```
-const ws_server = new WebSocketMiddleware("/path", socket_handler);
+const ws_server = new WebSocketMiddleware(socket_handler);
 app.use(ws_server.middleware());
 ```
 
-where "/path" is the exact route the client is connecting on and socket_handler is the thing that is actually handling the sockets.
+Handler typedef:
 
-Or just take a look at the example server. (Once it starts working.)
+```
+(socket: WebSocket, url: URL, headers: Headers) => Promise<void>;
+```
+
+Just take a look at the example server.
+
+## Why?
+I was having problems finding example code. So now that I *have* example code I want it written down somewhere so I don't forget it.
+
+I'm also going to try to get this into one of the "standard" oak middleware packs.
