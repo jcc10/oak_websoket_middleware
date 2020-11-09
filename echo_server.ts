@@ -10,7 +10,6 @@ export class Echo_Server {
         // Register user connection
         this.users.set(userId, ws);
         await this.broadcast(`${userId} is connected`);
-
         // Wait for new messages
         try {
             for await (const ev of ws) {
