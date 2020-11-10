@@ -3,7 +3,7 @@ Idiot level middleware for creating websocket endpoints.
 
 Import with
 ```
-import { WebSocketMiddleware } from "./mod.ts";
+import { WebSocketMiddleware } from "https://raw.githubusercontent.com/jcc10/oak_websoket_middleware/main/mod.ts";
 ```
 
 Create a new server with
