@@ -1,19 +1,18 @@
 # oak_websoket_middleware
 Idiot level middleware for creating websocket endpoints.
 
-Import with ```
-import { WebSocketMiddleware } from "./mod.ts";
+Import with
+```
+import { WebSocketMiddleware } from "https://raw.githubusercontent.com/jcc10/oak_websoket_middleware/main/mod.ts";
 ```
 
 Create a new server with
-
 ```
 const ws_server = new WebSocketMiddleware(socket_handler);
 app.use(ws_server.middleware());
 ```
 
 Handler typedef:
-
 ```
 (socket: WebSocket, url: URL, headers: Headers) => Promise<void>;
 ```
