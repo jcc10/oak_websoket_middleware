@@ -1,5 +1,6 @@
 import type { Middleware, Context } from "https://deno.land/x/oak@v6.3.1/mod.ts";
 import { WebSocket, acceptable } from 'https://deno.land/std@0.76.0/ws/mod.ts'
+export { WebSocket };
 export type handler = (socket: WebSocket, url: URL, headers: Headers) => Promise<void>;
 export class WebSocketMiddleware {
     public handler: handler;
