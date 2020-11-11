@@ -1,4 +1,4 @@
-import { WebSocket, isWebSocketCloseEvent, isWebSocketPingEvent } from 'https://deno.land/std@0.76.0/ws/mod.ts'
+import { WebSocket, isWebSocketCloseEvent, isWebSocketPingEvent } from 'https://deno.land/std@0.77.0/ws/mod.ts'
 import { v4 } from 'https://deno.land/std@0.76.0/uuid/mod.ts'
 
 export class Echo_Server {
