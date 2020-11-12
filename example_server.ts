@@ -1,4 +1,4 @@
-import { Application } from "https://deno.land/x/oak@v6.3.1/mod.ts";
+import { Application } from "https://deno.land/x/oak@v6.3.2/mod.ts";
 import { WebSocketMiddleware } from "./mod.ts";
 import { Echo_Server } from "./echo_server.ts";
 
