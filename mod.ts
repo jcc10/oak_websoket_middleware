@@ -6,7 +6,7 @@ export type handler = (socket: WebSocket, url: URL, headers: Headers) => Promise
 export function WebSocketMiddleware(handle: handler): Middleware {
     return async function (ctx, next) {
         if (acceptable(ctx.request)) {
-            let ws = await ctx.upgrade();
+            const ws = await ctx.upgrade();
             await handle(ws, ctx.request.url, ctx.request.headers);
         } else {
             return await next();

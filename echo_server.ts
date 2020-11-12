@@ -1,7 +1,7 @@
 import { WebSocket, isWebSocketCloseEvent, isWebSocketPingEvent } from 'https://deno.land/std@0.77.0/ws/mod.ts'
 import { v4 } from 'https://deno.land/std@0.77.0/uuid/mod.ts'
 
-export class Echo_Server {
+export class ECHO_SERVER {
     private users = new Map<string, WebSocket>();
     private path: string;
     constructor(path: string){

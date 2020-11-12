@@ -1,12 +1,12 @@
-import { Application } from "https://deno.land/x/oak@v6.3.2/mod.ts";
+import { Application, Context } from "https://deno.land/x/oak@v6.3.2/mod.ts";
 import { WebSocketMiddleware } from "./mod.ts";
-import { Echo_Server } from "./echo_server.ts";
+import { ECHO_SERVER } from "./echo_server.ts";
 
 const app = new Application();
-const echo_server = new Echo_Server("/ws");
-app.use(WebSocketMiddleware(echo_server.socket_handler()));
+const echoServer = new ECHO_SERVER("/ws");
+app.use(WebSocketMiddleware(echoServer.socket_handler()));
 
-app.use(async (ctx: any, next: any) => {
+app.use(async (ctx: Context) => {
     ctx.response.body = `<!DOCTYPE html>
 <html lang="en">
 
