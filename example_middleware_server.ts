@@ -1,13 +1,20 @@
 import { Application, Context } from "https://deno.land/x/oak@v6.3.2/mod.ts";
-import { WebSocketMiddleware } from "./mod.ts";
+import { WebSocketMiddleware, WebSocketMiddlewareHandler } from "./mod.ts";
 import { ECHO_SERVER } from "./echo_server.ts";
 
 const app = new Application();
+const wsMiddle = new WebSocketMiddlewareHandler();
 const echoServer = new ECHO_SERVER("/ws");
-app.use(WebSocketMiddleware(echoServer.socket_handler()));
+wsMiddle.use(async (next, socket, url) => {
+    socket.send(`You joined from path: ${url.pathname}`);
+    socket.send(`   This message sponsored by wsMiddle`);
+    await next();
+})
+wsMiddle.use(echoServer.middleware());
+app.use(WebSocketMiddleware(wsMiddle.handle()));
 
 app.use((ctx: Context) => {
-    ctx.response.body = `<!DOCTYPE html>
+  ctx.response.body = `<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -32,7 +39,7 @@ app.use((ctx: Context) => {
     </script>
         </body>
 
-        </html>`
+        </html>`;
 });
 console.log("Server running on localhost:3000");
 await app.listen({ port: 3000 });

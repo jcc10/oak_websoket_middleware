@@ -1,5 +1,6 @@
 import { WebSocket, isWebSocketCloseEvent, isWebSocketPingEvent } from 'https://deno.land/std@0.77.0/ws/mod.ts'
 import { v4 } from 'https://deno.land/std@0.77.0/uuid/mod.ts'
+import { wsMiddleware } from "./mod.ts";
 
 export class ECHO_SERVER {
     private users = new Map<string, WebSocket>();
@@ -58,6 +59,12 @@ export class ECHO_SERVER {
 
     public socket_handler() {
         return async (socket: WebSocket, url: URL, headers: Headers) => { await this.handler(socket, url, headers); };
+    }
+
+    public middleware(): wsMiddleware{
+        return async (next, socket, url, headers) => {
+            await this.handler(socket, url, headers);
+        }
     }
 
 
