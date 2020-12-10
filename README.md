@@ -8,8 +8,7 @@ import { WebSocketMiddleware } from "https://raw.githubusercontent.com/jcc10/oak
 
 Create a new server with
 ```
-const ws_server = new WebSocketMiddleware(socket_handler);
-app.use(ws_server.middleware());
+app.use(WebSocketMiddleware(socket_handler));
 ```
 
 Handler typedef:
