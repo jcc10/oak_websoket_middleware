@@ -6,10 +6,10 @@ const app = new Application();
 const wsMiddle = new WebSocketMiddlewareHandler();
 const echoServer = new ECHO_SERVER("/ws");
 wsMiddle.use(async (next, socket, url) => {
-    socket.send(`You joined from path: ${url.pathname}`);
-    socket.send(`   This message sponsored by wsMiddle`);
-    await next();
-})
+  socket.send(`You joined from path: ${url.pathname}`);
+  socket.send(`   This message sponsored by wsMiddle`);
+  await next();
+});
 wsMiddle.use(echoServer.middleware());
 app.use(WebSocketMiddleware(wsMiddle.handle()));
 

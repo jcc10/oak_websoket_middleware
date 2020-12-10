@@ -7,7 +7,7 @@ const echoServer = new ECHO_SERVER("/ws");
 app.use(WebSocketMiddleware(echoServer.socket_handler()));
 
 app.use((ctx: Context) => {
-    ctx.response.body = `<!DOCTYPE html>
+  ctx.response.body = `<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -32,7 +32,7 @@ app.use((ctx: Context) => {
     </script>
         </body>
 
-        </html>`
+        </html>`;
 });
 console.log("Server running on localhost:3000");
 await app.listen({ port: 3000 });
