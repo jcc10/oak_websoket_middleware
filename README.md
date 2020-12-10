@@ -23,3 +23,7 @@ Just take a look at the example server.
 I was having problems finding example code. So now that I *have* example code I want it written down somewhere so I don't forget it.
 
 I'm also going to try to get this into one of the "standard" oak middleware packs.
+
+
+## Middleware Mode
+There is now a middleware mode supported. Docs to come later.
