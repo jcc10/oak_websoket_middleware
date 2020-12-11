@@ -1,7 +1,7 @@
 import type { Middleware as OakMiddleware } from "https://deno.land/x/oak@v6.3.2/mod.ts";
 import type { WebSocket } from "https://deno.land/std@0.77.0/ws/mod.ts";
 import { acceptable } from "https://deno.land/std@0.77.0/ws/mod.ts";
-import * as Middleware from "https://deno.land/x/middleware@1.0.3/mod.ts";
+import * as Middleware from "https://deno.land/x/middleware@1.1.0/mod.ts";
 
 /**
  * Handles incoming websocket connections.
@@ -28,8 +28,6 @@ export function WebSocketMiddleware(handle: wsHandler): OakMiddleware {
     }
   };
 }
-
-export type wsMiddleware = Middleware.MiddlewareCallback<wsHandler>;
 
 /**
  * A middleware handler for WebSockets, Similar to Oak Middleware (But only for WebSockets)

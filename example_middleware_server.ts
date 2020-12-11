@@ -5,12 +5,12 @@ import { ECHO_SERVER } from "./echo_server.ts";
 const app = new Application();
 const wsMiddle = new WebSocketMiddlewareHandler();
 const echoServer = new ECHO_SERVER("/ws");
-wsMiddle.use(async (next, socket, url) => {
+wsMiddle.use(async (socket, url, headers, next) => {
   socket.send(`You joined from path: ${url.pathname}`);
   socket.send(`   This message sponsored by wsMiddle`);
   await next();
 });
-wsMiddle.use(echoServer.middleware());
+wsMiddle.use(echoServer.socket_handler());
 app.use(WebSocketMiddleware(wsMiddle.handle()));
 
 app.use((ctx: Context) => {
